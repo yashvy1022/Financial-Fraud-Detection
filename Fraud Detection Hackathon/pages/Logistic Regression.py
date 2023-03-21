@@ -140,8 +140,6 @@ if rad == "Insurance Claim":
     scaler = MinMaxScaler()
 
     df = pd.DataFrame(data5, columns=[columns for columns in data4])
-    
-    df = pd. DataFrame(data5, columns=[columns for columns in data4])
 
     X = df.drop(columns='fraud_reported', axis=1)
     Y = df['fraud_reported']
