@@ -134,10 +134,10 @@ if rad == "Insurance Claim":
 
     data4.fraud_reported.replace('Y', 1, inplace=True)
     data4.fraud_reported.replace('N', 0, inplace=True)
-    scaler = MinMaxScaler()
-    data5 = scaler.transform(data4)
 
     scaler = MinMaxScaler()
+    scaler.fit(data4)
+    data5 = scaler.transform(data4)
 
     df = pd.DataFrame(data5, columns=[columns for columns in data4])
 
@@ -161,6 +161,6 @@ if rad == "Insurance Claim":
     X_test_prediction = model1.predict(X_test)
     testing_data_accuracy = accuracy_score(X_test_prediction, Y_test)
 
-    st.write("Insurance Claim")
+    st.title("Insurance Claim")
 
-    st.write("Accuracy Score on Test Data : ", testing_data_accuracy)
+    st.write("Accuracy Score on Test Data : ", testing_data_accuracy*100)
