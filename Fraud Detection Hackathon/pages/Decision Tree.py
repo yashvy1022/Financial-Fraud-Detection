@@ -157,11 +157,10 @@ if rad == "Insurance Claim":
     data4.fraud_reported.replace('N', 0, inplace=True)
 
     scaler = MinMaxScaler()
+    scaler.fit(data4)
     data5 = scaler.transform(data4)
 
-    scaler = MinMaxScaler()
-
-    df = pd.DataFrame(data5, columns=[columns for columns in data4]) 
+    df = pd.DataFrame(data5, columns=[columns for columns in data4])
 
     X = df.drop(columns='fraud_reported', axis=1)
     Y = df['fraud_reported']
@@ -230,6 +229,11 @@ if rad == "Insurance Claim":
     # Prediction using entropy
     y_pred_entropy = prediction(X_test, clf_entropy)
     cal_accuracy(Y_test, y_pred_entropy)
+
+    clf = SVC(kernel='linear')
+
+    # fitting x samples and y classes
+    clf.fit(X_train, Y_train)
 
     X_train_prediction_svm = clf.predict(X_train)
     training_data_accuracy_svm = accuracy_score(X_train_prediction_svm, Y_train)
