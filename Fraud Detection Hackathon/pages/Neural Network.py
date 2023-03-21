@@ -147,6 +147,7 @@ if rad == "Insurance Claim":
     data4.fraud_reported.replace('N', 0, inplace=True)
 
     scaler = MinMaxScaler()
+    scaler.fit(data4)
     data5 = scaler.transform(data4)
 
     scaler = MinMaxScaler()
