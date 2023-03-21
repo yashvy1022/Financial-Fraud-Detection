@@ -157,17 +157,13 @@ if rad == "Insurance Claim":
     data4.fraud_reported.replace('N', 0, inplace=True)
 
     scaler = MinMaxScaler()
-    print(scaler.fit(data4.drop(['College', 'High School', 'JD', 'MD', 'Masters', 'PhD', 'Major Damage'], axis=1)))
-    # MinMaxScaler()
-    # print(scaler.data_max_)
-    print("-------------------------")
-    data6 = scaler.transform(
-        data4.drop(['College', 'High School', 'JD', 'MD', 'Masters', 'PhD', 'Major Damage'], axis=1))
-    data5 = data4.drop(['College', 'High School', 'JD', 'MD', 'Masters', 'PhD', 'Major Damage'], axis=1)
+    data5 = scaler.transform(data4)
 
     scaler = MinMaxScaler()
 
     df = pd.DataFrame(data5, columns=[columns for columns in data4])
+    
+    df = pd. DataFrame(data5, columns=[columns for columns in data4]) 
 
     X = df.drop(columns='fraud_reported', axis=1)
     Y = df['fraud_reported']
