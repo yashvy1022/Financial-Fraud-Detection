@@ -127,6 +127,18 @@ if rad =="Insurance Claim":
                 print(f'(column) : {df[column].unique()}')
 
 
+    # Function to calculate accuracy
+    def cal_accuracy(y_test, y_pred):
+
+        print("Confusion Matrix: ",
+              confusion_matrix(y_test, y_pred))
+
+        print("Accuracy : ",
+              accuracy_score(y_test, y_pred) * 100)
+
+        print("Report : ",
+              classification_report(y_test, y_pred))
+
     data4.drop(['property_damage'], axis=1, inplace=True)
 
     data4.drop(['police_report_available'], axis=1, inplace=True)
@@ -135,9 +147,8 @@ if rad =="Insurance Claim":
     data4.fraud_reported.replace('N', 0, inplace=True)
 
     scaler = MinMaxScaler()
+    scaler.fit(data4)
     data5 = scaler.transform(data4)
-
-    scaler = MinMaxScaler()
 
     df = pd.DataFrame(data5, columns=[columns for columns in data4])
 
@@ -155,4 +166,5 @@ if rad =="Insurance Claim":
 
     y_pred_nb = gnb.fit(X_train, Y_train).predict(X_test)
 
-    st.write(cal_accuracy(Y_test, y_pred_nb))
+    st.title("Insurance Claim")
+    st.write({"Accuracy Score on Test Data :", accuracy_score(Y_test, y_pred_nb)*100})
